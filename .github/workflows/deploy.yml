@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ['main', 'copilot/monitoramento-veiculos-carga']
+    branches: ['main', 'copilot/monitoramento-veiculos-carga', 'copilot/add-ncm-filter-functionality']
   workflow_dispatch:
 
 permissions:
