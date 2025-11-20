@@ -2,6 +2,8 @@
 
 Projeto de monitoramento em tempo real de transporte do estado do Paraná.
 
+🌐 **[Ver Demo ao Vivo](https://rgessele.github.io/sauron/)** (após habilitar GitHub Pages)
+
 ## 📋 Descrição
 
 Sistema web para monitoramento em tempo real de veículos de carga no estado do Paraná. O sistema exibe veículos em um mapa interativo, diferenciando-os por tipo de modal de transporte (MDFe), e apresenta informações detalhadas sobre a carga ao passar o mouse sobre cada veículo.
@@ -51,7 +53,17 @@ Ao passar o mouse sobre um veículo, são exibidas as seguintes informações:
 
 ## 🚀 Como Executar
 
-### Pré-requisitos
+### 🌐 Online (GitHub Pages)
+
+O projeto está configurado para deploy automático no GitHub Pages.
+
+**URL:** https://rgessele.github.io/sauron/
+
+Para habilitar, veja o guia completo em [DEPLOY.md](./DEPLOY.md)
+
+### 💻 Localmente
+
+#### Pré-requisitos
 - Node.js 18+ 
 - npm ou yarn
 
@@ -66,7 +78,7 @@ cd sauron
 npm install
 ```
 
-### Desenvolvimento
+#### Desenvolvimento
 
 ```bash
 # Executar servidor de desenvolvimento
@@ -75,7 +87,7 @@ npm run dev
 # Acessar em http://localhost:5173
 ```
 
-### Build para Produção
+#### Build para Produção
 
 ```bash
 # Gerar build otimizado
@@ -85,7 +97,7 @@ npm run build
 npm run preview
 ```
 
-### Linting
+#### Linting
 
 ```bash
 # Verificar código
