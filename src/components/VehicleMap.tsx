@@ -1,10 +1,13 @@
 import { useState, useMemo } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { VehicleMarker } from './VehicleMarker';
+import { FixedPointMarker } from './FixedPointMarker';
 import { NCMFilter } from './NCMFilter';
 import { VehicleDetailsPanel } from './VehicleDetailsPanel';
 import type { Vehicle } from '../types/vehicle';
 import { extractUniqueNCMs, filterVehiclesByNCM } from '../utils/ncmUtils';
+import { prfPosts } from '../data/prfPosts';
+import { receitaOffices } from '../data/receitaOffices';
 import 'leaflet/dist/leaflet.css';
 import './VehicleMap.css';
 
@@ -81,6 +84,14 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/* Render fixed points (PRF posts and Receita offices) */}
+        {prfPosts.map((point) => (
+          <FixedPointMarker key={point.id} point={point} />
+        ))}
+        {receitaOffices.map((point) => (
+          <FixedPointMarker key={point.id} point={point} />
+        ))}
+        {/* Render vehicles */}
         {filteredVehicles.map((vehicle) => (
           <VehicleMarker 
             key={vehicle.id} 
@@ -111,6 +122,17 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
           <div className="legend-item">
             <span className="legend-icon">📍</span>
             <span>Sem MDFe</span>
+          </div>
+        </div>
+        <h3 style={{ marginTop: '1rem' }}>Pontos Fixos</h3>
+        <div className="legend-items">
+          <div className="legend-item">
+            <span className="legend-icon">🚔</span>
+            <span>PRF</span>
+          </div>
+          <div className="legend-item">
+            <span className="legend-icon">🏛️</span>
+            <span>Receita Estadual</span>
           </div>
         </div>
       </div>
