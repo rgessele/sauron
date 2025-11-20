@@ -1,0 +1,168 @@
+.map-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.map-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.map-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.map-stats {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.95rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.stat-item strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.leaflet-map {
+  flex: 1;
+  z-index: 1;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.map-legend h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.legend-icon {
+  font-size: 1.4rem;
+  width: 28px;
+  text-align: center;
+}
+
+/* Vehicle marker styles */
+.vehicle-marker {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.vehicle-marker:hover {
+  transform: scale(1.2);
+}
+
+/* Tooltip styles */
+.vehicle-tooltip {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  min-width: 250px;
+}
+
+.tooltip-header {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+}
+
+.tooltip-section {
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.tooltip-section strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.tooltip-info {
+  color: #666;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+/* Leaflet tooltip customization */
+.leaflet-tooltip {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.8rem 1rem;
+}
+
+.leaflet-tooltip-top:before {
+  border-top-color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .map-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .map-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .map-legend {
+    bottom: 10px;
+    right: 10px;
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .legend-icon {
+    font-size: 1.2rem;
+    width: 24px;
+  }
+
+  .vehicle-tooltip {
+    min-width: 200px;
+    font-size: 0.8rem;
+  }
+}
