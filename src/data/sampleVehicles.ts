@@ -7,6 +7,10 @@ export const sampleVehicles: Vehicle[] = [
   {
     id: '1',
     plate: 'ABC-1234',
+    carrier: 'Transportadora Rápida Ltda',
+    state: 'PR',
+    vehicleType: 'Carreta',
+    status: 'Em trânsito',
     latitude: -25.4284,
     longitude: -49.2733,
     mdfe: {
@@ -16,6 +20,7 @@ export const sampleVehicles: Vehicle[] = [
       cargoWeight: 25000,
       origin: 'Curitiba - PR',
       destination: 'São Paulo - SP',
+      route: ['Curitiba/PR', 'Ponta Grossa/PR', 'Itapetininga/SP', 'São Paulo/SP'],
       value: 150000,
       invoices: [
         {
@@ -42,6 +47,10 @@ export const sampleVehicles: Vehicle[] = [
   {
     id: '2',
     plate: 'DEF-5678',
+    carrier: 'Aéreo Express S.A.',
+    state: 'PR',
+    vehicleType: 'Aeronave de carga',
+    status: 'Em trânsito',
     latitude: -25.5,
     longitude: -49.3,
     mdfe: {
@@ -51,6 +60,7 @@ export const sampleVehicles: Vehicle[] = [
       cargoWeight: 500,
       origin: 'Curitiba - PR',
       destination: 'Manaus - AM',
+      route: ['Curitiba/PR', 'Brasília/DF', 'Manaus/AM'],
       value: 500000,
       invoices: [
         {
@@ -77,6 +87,10 @@ export const sampleVehicles: Vehicle[] = [
   {
     id: '3',
     plate: 'GHI-9012',
+    carrier: 'Marítima Sul Navegação',
+    state: 'PR',
+    vehicleType: 'Navio cargueiro',
+    status: 'Parado',
     latitude: -25.4,
     longitude: -49.2,
     mdfe: {
@@ -86,6 +100,7 @@ export const sampleVehicles: Vehicle[] = [
       cargoWeight: 50000,
       origin: 'Paranaguá - PR',
       destination: 'Santos - SP',
+      route: ['Paranaguá/PR', 'Santos/SP'],
       value: 300000,
       invoices: [
         {
@@ -112,6 +127,10 @@ export const sampleVehicles: Vehicle[] = [
   {
     id: '4',
     plate: 'JKL-3456',
+    carrier: 'Ferrovias do Brasil S.A.',
+    state: 'PR',
+    vehicleType: 'Composição ferroviária',
+    status: 'Em trânsito',
     latitude: -25.45,
     longitude: -49.35,
     mdfe: {
@@ -121,6 +140,7 @@ export const sampleVehicles: Vehicle[] = [
       cargoWeight: 100000,
       origin: 'Ponta Grossa - PR',
       destination: 'Rio de Janeiro - RJ',
+      route: ['Ponta Grossa/PR', 'Curitiba/PR', 'São Paulo/SP', 'Rio de Janeiro/RJ'],
       value: 800000,
       invoices: [
         {
@@ -141,6 +161,10 @@ export const sampleVehicles: Vehicle[] = [
   {
     id: '5',
     plate: 'MNO-7890',
+    carrier: 'Logística Paraná Express',
+    state: 'PR',
+    vehicleType: 'Truck refrigerado',
+    status: 'Atrasado',
     latitude: -25.42,
     longitude: -49.25,
     mdfe: {
@@ -150,6 +174,7 @@ export const sampleVehicles: Vehicle[] = [
       cargoWeight: 15000,
       origin: 'Londrina - PR',
       destination: 'Curitiba - PR',
+      route: ['Londrina/PR', 'Maringá/PR', 'Ponta Grossa/PR', 'Curitiba/PR'],
       value: 80000,
       invoices: [
         {
@@ -176,6 +201,10 @@ export const sampleVehicles: Vehicle[] = [
   {
     id: '6',
     plate: 'PQR-1122',
+    carrier: 'Transporte Local Ltda',
+    state: 'PR',
+    vehicleType: 'Van',
+    status: 'Parado',
     latitude: -25.38,
     longitude: -49.29,
     lastUpdate: new Date()

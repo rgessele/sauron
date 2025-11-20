@@ -36,6 +36,7 @@ export interface MDFe {
   cargoWeight: number; // in kg
   origin: string;
   destination: string;
+  route?: string[]; // Array of cities in the route
   value: number; // in BRL
   invoices: Invoice[]; // NF-es associated with this MDFe
 }
@@ -44,6 +45,10 @@ export interface MDFe {
 export interface Vehicle {
   id: string;
   plate: string;
+  carrier?: string; // Transportadora
+  state?: string; // UF
+  vehicleType?: string; // Type: truck, carreta, carreta LS, etc
+  status?: string; // Status: em trânsito, parado, atrasado, etc
   latitude: number;
   longitude: number;
   mdfe?: MDFe;
