@@ -1,6 +1,9 @@
+import { useState, useMemo } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { VehicleMarker } from './VehicleMarker';
+import { NCMFilter } from './NCMFilter';
 import type { Vehicle } from '../types/vehicle';
+import { extractUniqueNCMs, filterVehiclesByNCM } from '../utils/ncmUtils';
 import 'leaflet/dist/leaflet.css';
 import './VehicleMap.css';
 
@@ -9,6 +12,17 @@ interface VehicleMapProps {
 }
 
 export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
+  const [selectedNCMs, setSelectedNCMs] = useState<string[]>([]);
+
+  // Extract all unique NCMs from vehicles
+  const availableNCMs = useMemo(() => extractUniqueNCMs(vehicles), [vehicles]);
+
+  // Filter vehicles by selected NCMs
+  const filteredVehicles = useMemo(
+    () => filterVehiclesByNCM(vehicles, selectedNCMs),
+    [vehicles, selectedNCMs]
+  );
+
   // Center map on Curitiba, Paraná
   const center: [number, number] = [-25.4284, -49.2733];
   const zoom = 11;
@@ -16,7 +30,14 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
   return (
     <div className="map-container">
       <div className="map-header">
-        <h1>🚛 Monitoramento de Veículos de Carga - Paraná</h1>
+        <div className="header-top">
+          <h1>🚛 Monitoramento de Veículos de Carga - Paraná</h1>
+          <NCMFilter
+            availableNCMs={availableNCMs}
+            selectedNCMs={selectedNCMs}
+            onNCMChange={setSelectedNCMs}
+          />
+        </div>
         <div className="map-stats">
           <span className="stat-item">
             Total de veículos: <strong>{vehicles.length}</strong>
@@ -24,6 +45,14 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
           <span className="stat-item">
             Com MDFe: <strong>{vehicles.filter(v => v.mdfe).length}</strong>
           </span>
+          <span className="stat-item">
+            Filtrados: <strong>{filteredVehicles.length}</strong>
+          </span>
+          {selectedNCMs.length > 0 && (
+            <span className="stat-item filter-active">
+              NCMs selecionados: <strong>{selectedNCMs.length}</strong>
+            </span>
+          )}
         </div>
       </div>
       <MapContainer 
@@ -36,7 +65,7 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {vehicles.map((vehicle) => (
+        {filteredVehicles.map((vehicle) => (
           <VehicleMarker key={vehicle.id} vehicle={vehicle} />
         ))}
       </MapContainer>

@@ -1,0 +1,194 @@
+.ncm-filter {
+  position: relative;
+  z-index: 1000;
+}
+
+.ncm-filter-header {
+  display: flex;
+  align-items: center;
+}
+
+.ncm-filter-toggle {
+  background: white;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #667eea;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
+}
+
+.ncm-filter-toggle:hover {
+  background: #667eea;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.ncm-badge {
+  background: #764ba2;
+  color: white;
+  border-radius: 12px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.ncm-filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 400px;
+  max-width: 500px;
+  z-index: 1001;
+}
+
+.ncm-search-box {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ncm-search-input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.ncm-search-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.ncm-filter-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ncm-action-btn {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  background: #f5f5f5;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ncm-action-btn:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.ncm-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.ncm-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ncm-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.ncm-list::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+.ncm-list::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+.ncm-item {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  gap: 0.8rem;
+}
+
+.ncm-item:hover {
+  background-color: #f5f5f5;
+}
+
+.ncm-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #667eea;
+}
+
+.ncm-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ncm-code {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.ncm-description {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.ncm-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ncm-filter-dropdown {
+    min-width: 300px;
+    max-width: 90vw;
+  }
+
+  .ncm-filter-toggle {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .ncm-list {
+    max-height: 250px;
+  }
+}
