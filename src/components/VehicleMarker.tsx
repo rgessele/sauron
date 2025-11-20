@@ -4,10 +4,17 @@ import { getVehicleIcon, getModalTypeDescription, formatCurrency, formatWeight }
 
 interface VehicleMarkerProps {
   vehicle: Vehicle;
+  onClick?: (vehicle: Vehicle) => void;
 }
 
-export const VehicleMarker: React.FC<VehicleMarkerProps> = ({ vehicle }) => {
+export const VehicleMarker: React.FC<VehicleMarkerProps> = ({ vehicle, onClick }) => {
   const icon = getVehicleIcon(vehicle.mdfe?.modalType);
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(vehicle);
+    }
+  };
 
   const tooltipContent = () => {
     if (!vehicle.mdfe) {
@@ -58,6 +65,9 @@ export const VehicleMarker: React.FC<VehicleMarkerProps> = ({ vehicle }) => {
     <Marker 
       position={[vehicle.latitude, vehicle.longitude]} 
       icon={icon}
+      eventHandlers={{
+        click: handleClick
+      }}
     >
       <Tooltip direction="top" offset={[0, -10]} opacity={0.95}>
         {tooltipContent()}

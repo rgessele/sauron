@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { VehicleMarker } from './VehicleMarker';
 import { NCMFilter } from './NCMFilter';
+import { VehicleDetailsPanel } from './VehicleDetailsPanel';
 import type { Vehicle } from '../types/vehicle';
 import { extractUniqueNCMs, filterVehiclesByNCM } from '../utils/ncmUtils';
 import 'leaflet/dist/leaflet.css';
@@ -13,6 +14,7 @@ interface VehicleMapProps {
 
 export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
   const [selectedNCMs, setSelectedNCMs] = useState<string[]>([]);
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
   // Extract all unique NCMs from vehicles
   const availableNCMs = useMemo(() => extractUniqueNCMs(vehicles), [vehicles]);
@@ -27,8 +29,22 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
   const center: [number, number] = [-25.4284, -49.2733];
   const zoom = 11;
 
+  const handleVehicleClick = (vehicle: Vehicle) => {
+    setSelectedVehicle(vehicle);
+  };
+
+  const handleClosePanel = () => {
+    setSelectedVehicle(null);
+  };
+
   return (
     <div className="map-container">
+      {selectedVehicle && (
+        <VehicleDetailsPanel 
+          vehicle={selectedVehicle} 
+          onClose={handleClosePanel}
+        />
+      )}
       <div className="map-header">
         <div className="header-top">
           <h1>🚛 Monitoramento de Veículos de Carga - Paraná</h1>
@@ -66,7 +82,11 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {filteredVehicles.map((vehicle) => (
-          <VehicleMarker key={vehicle.id} vehicle={vehicle} />
+          <VehicleMarker 
+            key={vehicle.id} 
+            vehicle={vehicle}
+            onClick={handleVehicleClick}
+          />
         ))}
       </MapContainer>
       <div className="map-legend">
