@@ -51,7 +51,10 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
       )}
       <div className="map-header">
         <div className="header-top">
-          <h1>🚛 Monitoramento de Veículos de Carga - Paraná</h1>
+          <div className="logo-container">
+            <img src="/sauron-logo.svg" alt="Sauron Logo" className="header-logo" />
+            <h1>Sistema de Monitoramento de Cargas</h1>
+          </div>
           <NCMFilter
             availableNCMs={availableNCMs}
             selectedNCMs={selectedNCMs}

@@ -22,6 +22,17 @@
   gap: 2rem;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-logo {
+  height: 50px;
+  width: auto;
+}
+
 .map-header h1 {
   margin: 0;
   font-size: 1.8rem;
@@ -208,6 +219,14 @@
 @media (max-width: 768px) {
   .map-header h1 {
     font-size: 1.3rem;
+  }
+
+  .header-logo {
+    height: 40px;
+  }
+
+  .logo-container {
+    gap: 0.5rem;
   }
 
   .header-top {
