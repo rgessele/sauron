@@ -18,6 +18,7 @@ interface VehicleMapProps {
 export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
   const [selectedNCMs, setSelectedNCMs] = useState<string[]>([]);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [isLegendVisible, setIsLegendVisible] = useState<boolean>(true);
 
   // Extract all unique NCMs from vehicles
   const availableNCMs = useMemo(() => extractUniqueNCMs(vehicles), [vehicles]);
@@ -101,40 +102,53 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
         ))}
       </MapContainer>
       <div className="map-legend">
-        <h3>Legenda - Modais de Transporte</h3>
-        <div className="legend-items">
-          <div className="legend-item">
-            <span className="legend-icon">🚛</span>
-            <span>Rodoviário</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-icon">✈️</span>
-            <span>Aéreo</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-icon">🚢</span>
-            <span>Aquaviário</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-icon">🚂</span>
-            <span>Ferroviário</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-icon">📍</span>
-            <span>Sem MDFe</span>
-          </div>
+        <div className="legend-header">
+          <h3>Legenda - Modais de Transporte</h3>
+          <button 
+            className="legend-toggle-btn"
+            onClick={() => setIsLegendVisible(!isLegendVisible)}
+            aria-label={isLegendVisible ? "Ocultar legenda" : "Exibir legenda"}
+          >
+            {isLegendVisible ? '✕' : '☰'}
+          </button>
         </div>
-        <h3 style={{ marginTop: '1rem' }}>Pontos Fixos</h3>
-        <div className="legend-items">
-          <div className="legend-item">
-            <span className="legend-icon">🚔</span>
-            <span>PRF</span>
-          </div>
-          <div className="legend-item">
-            <span className="legend-icon">🏛️</span>
-            <span>Receita Estadual</span>
-          </div>
-        </div>
+        {isLegendVisible && (
+          <>
+            <div className="legend-items">
+              <div className="legend-item">
+                <span className="legend-icon">🚛</span>
+                <span>Rodoviário</span>
+              </div>
+              <div className="legend-item">
+                <span className="legend-icon">✈️</span>
+                <span>Aéreo</span>
+              </div>
+              <div className="legend-item">
+                <span className="legend-icon">🚢</span>
+                <span>Aquaviário</span>
+              </div>
+              <div className="legend-item">
+                <span className="legend-icon">🚂</span>
+                <span>Ferroviário</span>
+              </div>
+              <div className="legend-item">
+                <span className="legend-icon">📍</span>
+                <span>Sem MDFe</span>
+              </div>
+            </div>
+            <h3 style={{ marginTop: '1rem' }}>Pontos Fixos</h3>
+            <div className="legend-items">
+              <div className="legend-item">
+                <span className="legend-icon">🚔</span>
+                <span>PRF</span>
+              </div>
+              <div className="legend-item">
+                <span className="legend-icon">🏛️</span>
+                <span>Receita Estadual</span>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

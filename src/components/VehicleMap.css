@@ -69,13 +69,45 @@
   min-width: 200px;
 }
 
+.legend-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
 .map-legend h3 {
-  margin: 0 0 0.8rem 0;
+  margin: 0;
   font-size: 1rem;
   font-weight: 600;
   color: #333;
   border-bottom: 2px solid #667eea;
   padding-bottom: 0.5rem;
+  flex: 1;
+}
+
+.legend-toggle-btn {
+  background: #667eea;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 0.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.legend-toggle-btn:hover {
+  background: #764ba2;
+  transform: scale(1.05);
 }
 
 .legend-items {
