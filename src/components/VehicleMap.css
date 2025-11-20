@@ -108,8 +108,27 @@
   transform: scale(1.2);
 }
 
+/* Fixed point marker styles */
+.fixed-point-marker {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fixed-point-marker:hover {
+  transform: scale(1.2);
+}
+
+.prf-marker {
+  z-index: 500;
+}
+
+.receita-marker {
+  z-index: 500;
+}
+
 /* Tooltip styles */
-.vehicle-tooltip {
+.vehicle-tooltip,
+.fixed-point-tooltip {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   font-size: 0.85rem;
   line-height: 1.5;
