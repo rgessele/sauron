@@ -52,7 +52,7 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
       <div className="map-header">
         <div className="header-top">
           <div className="logo-container">
-            <img src="/sauron-logo.svg" alt="Sauron Logo" className="header-logo" />
+            <img src="/logotipo-sauron-transparente-horizontal.png" alt="Sauron Logo" className="header-logo" />
             <h1>Sistema de Monitoramento de Cargas</h1>
           </div>
           <NCMFilter
