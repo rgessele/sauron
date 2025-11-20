@@ -25,6 +25,19 @@ Cada tipo de modal de transporte possui um ícone específico:
 - **🚂 Ferroviário** - Transporte ferroviário
 - **📍 Sem MDFe** - Veículos sem documento fiscal associado
 
+### 🔍 Filtro por NCM
+Sistema de filtragem avançada por NCM (Nomenclatura Comum do Mercosul):
+
+- **Seleção múltipla** - Filtre por um ou mais NCMs simultaneamente
+- **Busca inteligente** - Pesquise NCMs por código ou descrição
+- **Indicadores visuais** - Badge mostrando quantidade de NCMs selecionados
+- **Estatísticas em tempo real** - Contador de veículos filtrados
+- **Ações rápidas**:
+  - "Selecionar todos" - Seleciona todos os NCMs disponíveis
+  - "Limpar filtro" - Remove todos os filtros aplicados
+
+Quando um ou mais NCMs são selecionados, o mapa exibe apenas os veículos cujos MDF-es contêm notas fiscais com os NCMs filtrados.
+
 ### 💬 Tooltip Informativo
 Ao passar o mouse sobre um veículo, são exibidas as seguintes informações:
 
@@ -112,13 +125,16 @@ sauron/
 │   ├── components/
 │   │   ├── VehicleMap.tsx       # Componente principal do mapa
 │   │   ├── VehicleMap.css       # Estilos do mapa
-│   │   └── VehicleMarker.tsx    # Marcador de veículo individual
+│   │   ├── VehicleMarker.tsx    # Marcador de veículo individual
+│   │   ├── NCMFilter.tsx        # Componente de filtro por NCM
+│   │   └── NCMFilter.css        # Estilos do filtro NCM
 │   ├── types/
 │   │   └── vehicle.ts           # Tipos TypeScript (MDFe, Vehicle)
 │   ├── data/
 │   │   └── sampleVehicles.ts    # Dados de exemplo para demonstração
 │   ├── utils/
-│   │   └── vehicleIcons.ts      # Funções utilitárias (ícones, formatação)
+│   │   ├── vehicleIcons.ts      # Funções utilitárias (ícones, formatação)
+│   │   └── ncmUtils.ts          # Funções utilitárias para filtro de NCM
 │   ├── App.tsx                  # Componente principal da aplicação
 │   ├── main.tsx                 # Entry point
 │   └── index.css                # Estilos globais
@@ -130,6 +146,32 @@ sauron/
 
 ## 📊 Tipos de Dados
 
+### NCM (Nomenclatura Comum do Mercosul)
+```typescript
+interface NCM {
+  code: string;        // Código NCM de 8 dígitos
+  description: string; // Descrição do produto
+}
+```
+
+### InvoiceItem (Item de Nota Fiscal)
+```typescript
+interface InvoiceItem {
+  id: string;
+  ncm: NCM;
+  quantity: number;
+  value: number;       // em BRL
+}
+```
+
+### Invoice (Nota Fiscal Eletrônica)
+```typescript
+interface Invoice {
+  id: string;
+  items: InvoiceItem[];
+}
+```
+
 ### MDFe (Manifesto de Documentos Fiscais Eletrônico)
 ```typescript
 interface MDFe {
@@ -140,6 +182,7 @@ interface MDFe {
   origin: string;
   destination: string;
   value: number;             // em BRL
+  invoices: Invoice[];       // NF-es associadas ao MDFe
 }
 ```
 
@@ -158,7 +201,19 @@ interface Vehicle {
 ## 🎨 Screenshots
 
 ### Visualização Geral
-![Mapa de Monitoramento](https://github.com/user-attachments/assets/389db00c-243c-4b7a-8bf9-eef2854a97cd)
+![Mapa de Monitoramento](https://github.com/user-attachments/assets/503215b1-2c72-4c38-bd79-398f7386bc02)
+
+### Filtro de NCM
+![Filtro de NCM Aberto](https://github.com/user-attachments/assets/66bbee6c-b922-49aa-a460-0fe22e9c6ff5)
+
+### Filtro de NCM Aplicado
+![Filtro Aplicado - Único NCM](https://github.com/user-attachments/assets/a1b4c89c-c3f6-459b-8c76-865cf7b6f487)
+
+### Filtro com Múltiplos NCMs
+![Filtro Aplicado - Múltiplos NCMs](https://github.com/user-attachments/assets/61c0c009-4dfa-444f-b4fe-bb31bbae5a37)
+
+### Busca de NCM
+![Busca de NCM por Descrição](https://github.com/user-attachments/assets/dfdd59af-6d73-4465-b0bb-2efb4330e598)
 
 ### Tooltip com Informações
 ![Tooltip de Veículo](https://github.com/user-attachments/assets/7559d46a-9f76-4cab-b657-f8aed4dba907)
@@ -166,6 +221,7 @@ interface Vehicle {
 ## 🔄 Próximas Funcionalidades
 
 - [ ] Integração com API de dados reais
+- [x] Filtro por NCM (Nomenclatura Comum do Mercosul)
 - [ ] Filtros por tipo de modal
 - [ ] Histórico de rotas
 - [ ] Alertas em tempo real

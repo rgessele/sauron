@@ -8,6 +8,26 @@ export const MDFeModalType = {
 
 export type MDFeModalType = typeof MDFeModalType[keyof typeof MDFeModalType];
 
+// NCM (Nomenclatura Comum do Mercosul) - Product classification code
+export interface NCM {
+  code: string;        // 8-digit NCM code
+  description: string; // Product description
+}
+
+// Invoice item with NCM information
+export interface InvoiceItem {
+  id: string;
+  ncm: NCM;
+  quantity: number;
+  value: number; // in BRL
+}
+
+// Invoice (NF-e) associated with MDFe
+export interface Invoice {
+  id: string;
+  items: InvoiceItem[];
+}
+
 // MDFe document with cargo information
 export interface MDFe {
   id: string;
@@ -17,6 +37,7 @@ export interface MDFe {
   origin: string;
   destination: string;
   value: number; // in BRL
+  invoices: Invoice[]; // NF-es associated with this MDFe
 }
 
 // Vehicle with optional MDFe
