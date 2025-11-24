@@ -174,6 +174,25 @@
   text-align: center;
 }
 
+/* Route legend styles */
+.route-legend-line {
+  width: 32px;
+  height: 4px;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.route-legend-planned {
+  background-color: #2563eb;
+  border: 2px dashed rgba(37, 99, 235, 0.7);
+  height: 2px;
+}
+
+.route-legend-effective {
+  background-color: #dc2626;
+  height: 3px;
+}
+
 /* Vehicle marker styles */
 .vehicle-marker {
   cursor: pointer;
