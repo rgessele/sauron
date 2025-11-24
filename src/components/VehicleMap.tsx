@@ -3,11 +3,14 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import { VehicleMarker } from './VehicleMarker';
 import { FixedPointMarker } from './FixedPointMarker';
 import { NCMFilter } from './NCMFilter';
+import { MalhaFiscalFilter } from './MalhaFiscalFilter';
 import { VehicleDetailsPanel } from './VehicleDetailsPanel';
 import { PlannedRoute } from './PlannedRoute';
 import { EffectiveRoute } from './EffectiveRoute';
 import type { Vehicle } from '../types/vehicle';
 import { extractUniqueNCMs, filterVehiclesByNCM } from '../utils/ncmUtils';
+import { extractUniqueMalhasFiscais, filterVehiclesByMalhaFiscal } from '../utils/malhaFiscalUtils';
+import { malhasFiscais } from '../data/malhasFiscais';
 import { prfPosts } from '../data/prfPosts';
 import { receitaOffices } from '../data/receitaOffices';
 import 'leaflet/dist/leaflet.css';
@@ -29,17 +32,41 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({
   onRefresh
 }) => {
   const [selectedNCMs, setSelectedNCMs] = useState<string[]>([]);
+  const [selectedMalhas, setSelectedMalhas] = useState<string[]>([]);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [isLegendVisible, setIsLegendVisible] = useState<boolean>(true);
 
   // Extract all unique NCMs from vehicles
   const availableNCMs = useMemo(() => extractUniqueNCMs(vehicles), [vehicles]);
 
-  // Filter vehicles by selected NCMs
-  const filteredVehicles = useMemo(
-    () => filterVehiclesByNCM(vehicles, selectedNCMs),
-    [vehicles, selectedNCMs]
-  );
+  // Extract unique malhas fiscais from vehicles and merge with full list
+  const availableMalhas = useMemo(() => {
+    const vehicleMalhas = extractUniqueMalhasFiscais(vehicles);
+    const vehicleMalhaCodes = new Set(vehicleMalhas.map(m => m.code));
+    
+    // Start with malhas from vehicles, then add remaining from full list
+    const allMalhas = [...vehicleMalhas];
+    malhasFiscais.forEach(malha => {
+      if (!vehicleMalhaCodes.has(malha.code)) {
+        allMalhas.push(malha);
+      }
+    });
+    
+    return allMalhas.sort((a, b) => a.code.localeCompare(b.code));
+  }, [vehicles]);
+
+  // Filter vehicles by selected NCMs and Malhas Fiscais (intersection of both filters)
+  const filteredVehicles = useMemo(() => {
+    let result = vehicles;
+    
+    // Apply NCM filter
+    result = filterVehiclesByNCM(result, selectedNCMs);
+    
+    // Apply Malha Fiscal filter
+    result = filterVehiclesByMalhaFiscal(result, selectedMalhas);
+    
+    return result;
+  }, [vehicles, selectedNCMs, selectedMalhas]);
 
   // Center map on Curitiba, Paraná with wider view to show all state
   const center: [number, number] = [-25.4284, -49.2733];
@@ -67,11 +94,18 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({
             <img src={`${import.meta.env.BASE_URL}logo-sauron.png`} alt="Sauron Logo" className="header-logo" />
             <h1>Sistema de Monitoramento de Cargas</h1>
           </div>
-          <NCMFilter
-            availableNCMs={availableNCMs}
-            selectedNCMs={selectedNCMs}
-            onNCMChange={setSelectedNCMs}
-          />
+          <div className="filters-container">
+            <NCMFilter
+              availableNCMs={availableNCMs}
+              selectedNCMs={selectedNCMs}
+              onNCMChange={setSelectedNCMs}
+            />
+            <MalhaFiscalFilter
+              availableMalhas={availableMalhas}
+              selectedMalhas={selectedMalhas}
+              onMalhaChange={setSelectedMalhas}
+            />
+          </div>
         </div>
         <div className="map-stats">
           <span className="stat-item">
@@ -81,11 +115,19 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({
             Com MDFe: <strong>{vehicles.filter(v => v.mdfe).length}</strong>
           </span>
           <span className="stat-item">
+            Com Malha Fiscal: <strong>{vehicles.filter(v => v.malhasFiscais && v.malhasFiscais.length > 0).length}</strong>
+          </span>
+          <span className="stat-item">
             Filtrados: <strong>{filteredVehicles.length}</strong>
           </span>
           {selectedNCMs.length > 0 && (
             <span className="stat-item filter-active">
               NCMs selecionados: <strong>{selectedNCMs.length}</strong>
+            </span>
+          )}
+          {selectedMalhas.length > 0 && (
+            <span className="stat-item filter-active malha-active">
+              Malhas selecionadas: <strong>{selectedMalhas.length}</strong>
             </span>
           )}
           {lastUpdateTime && (

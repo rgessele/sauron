@@ -14,6 +14,12 @@ export interface NCM {
   description: string; // Product description
 }
 
+// Malha Fiscal - Fiscal mesh for tax auditing
+export interface MalhaFiscal {
+  code: string;        // Malha fiscal code (e.g., 'DF04B')
+  description: string; // Description of the fiscal mesh
+}
+
 // Invoice item with NCM information
 export interface InvoiceItem {
   id: string;
@@ -52,5 +58,6 @@ export interface Vehicle {
   latitude: number;
   longitude: number;
   mdfe?: MDFe;
+  malhasFiscais?: MalhaFiscal[]; // Fiscal meshes associated with this vehicle
   lastUpdate: Date;
 }

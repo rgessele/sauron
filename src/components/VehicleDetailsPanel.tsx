@@ -127,6 +127,23 @@ export const VehicleDetailsPanel: React.FC<VehicleDetailsPanelProps> = ({ vehicl
             <p className="no-data">Nenhuma informação disponível</p>
           )}
         </section>
+
+        {/* Malhas Fiscais Section */}
+        <section className="panel-section">
+          <h3>Malhas Fiscais</h3>
+          {vehicle.malhasFiscais && vehicle.malhasFiscais.length > 0 ? (
+            <div className="malha-list">
+              {vehicle.malhasFiscais.map((malha, index) => (
+                <div key={index} className="malha-item">
+                  <span className="malha-code">{malha.code}</span>
+                  <span className="malha-description">{malha.description}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="no-data">Nenhuma malha fiscal registrada</p>
+          )}
+        </section>
       </div>
     </div>
   );
