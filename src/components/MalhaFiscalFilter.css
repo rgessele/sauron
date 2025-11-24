@@ -1,0 +1,196 @@
+.malha-filter {
+  position: relative;
+  z-index: 1000;
+}
+
+.malha-filter-header {
+  display: flex;
+  align-items: center;
+}
+
+.malha-filter-toggle {
+  background: white;
+  border: 2px solid #e67e22;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e67e22;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(230, 126, 34, 0.2);
+}
+
+.malha-filter-toggle:hover {
+  background: #e67e22;
+  color: white;
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+}
+
+.malha-badge {
+  background: #c0392b;
+  color: white;
+  border-radius: 12px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.malha-filter .arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+}
+
+.malha-filter .arrow.open {
+  transform: rotate(180deg);
+}
+
+.malha-filter-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 450px;
+  max-width: 550px;
+  z-index: 1001;
+}
+
+.malha-search-box {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.malha-search-input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.malha-search-input:focus {
+  outline: none;
+  border-color: #e67e22;
+}
+
+.malha-filter-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.malha-action-btn {
+  flex: 1;
+  padding: 0.5rem 0.8rem;
+  background: #f5f5f5;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.malha-action-btn:hover {
+  background: #e67e22;
+  color: white;
+  border-color: #e67e22;
+}
+
+.malha-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.malha-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.malha-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.malha-list::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+.malha-list::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+
+.malha-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  gap: 0.8rem;
+}
+
+.malha-item:hover {
+  background-color: #fff8f0;
+}
+
+.malha-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #e67e22;
+  margin-top: 2px;
+}
+
+.malha-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.malha-code {
+  font-weight: 600;
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+.malha-description {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+.malha-empty {
+  padding: 2rem;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .malha-filter-dropdown {
+    min-width: 300px;
+    max-width: 90vw;
+  }
+
+  .malha-filter-toggle {
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .malha-list {
+    max-height: 250px;
+  }
+}

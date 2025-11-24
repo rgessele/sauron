@@ -42,6 +42,10 @@ export const sampleVehicles: Vehicle[] = [
         }
       ]
     },
+    malhasFiscais: [
+      { code: 'DF04B', description: 'VALOR ICMS NA EFD É MENOR QUE O INFORMADO NA DF-E (SAÍDA)' },
+      { code: 'DF06A', description: 'DESTINATÁRIO DO DF-E DIFERENTE DO INFORMADO NA EFD' }
+    ],
     lastUpdate: new Date()
   },
   {
@@ -82,6 +86,9 @@ export const sampleVehicles: Vehicle[] = [
         }
       ]
     },
+    malhasFiscais: [
+      { code: 'DF01', description: 'CHAVE DE ACESSO DO DOCUMENTO FISCAL INFORMADO NÃO ENCONTRADA NO BANCO DE DADOS DA REPR' }
+    ],
     lastUpdate: new Date()
   },
   {
@@ -122,6 +129,10 @@ export const sampleVehicles: Vehicle[] = [
         }
       ]
     },
+    malhasFiscais: [
+      { code: 'DF04B', description: 'VALOR ICMS NA EFD É MENOR QUE O INFORMADO NA DF-E (SAÍDA)' },
+      { code: 'AJDF01', description: 'UTILIZAÇÃO DE AJUSTE SEM INFORMAR OS DOCUMENTOS FISCAIS RELACIONADOS (E113/E224/E313)' }
+    ],
     lastUpdate: new Date()
   },
   {
@@ -196,6 +207,9 @@ export const sampleVehicles: Vehicle[] = [
         }
       ]
     },
+    malhasFiscais: [
+      { code: 'APUR01', description: 'SALDO CREDOR RECEBIDO NO PERÍODO CORRENTE É MAIOR DO QUE O TRANSFERIDO NO PERÍODO ANTERIOR' }
+    ],
     lastUpdate: new Date()
   },
   {

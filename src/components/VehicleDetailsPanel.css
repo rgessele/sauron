@@ -180,6 +180,35 @@
   border-radius: 6px;
 }
 
+/* Malha Fiscal list styling */
+.malha-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.malha-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.8rem;
+  background: #fff5f5;
+  border-radius: 6px;
+  border-left: 3px solid #e67e22;
+}
+
+.malha-item .malha-code {
+  font-weight: 700;
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+.malha-item .malha-description {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.4;
+}
+
 /* Scrollbar styling */
 .panel-content::-webkit-scrollbar {
   width: 8px;

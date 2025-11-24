@@ -22,6 +22,12 @@
   gap: 2rem;
 }
 
+.filters-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -57,6 +63,10 @@
   background: rgba(255, 255, 255, 0.2);
   padding: 0.3rem 0.8rem;
   border-radius: 6px;
+}
+
+.stat-item.filter-active.malha-active {
+  background: rgba(230, 126, 34, 0.3);
 }
 
 .stat-item strong {
