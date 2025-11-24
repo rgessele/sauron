@@ -12,6 +12,12 @@ export const EffectiveRoute: React.FC<EffectiveRouteProps> = ({ vehicleId }) => 
   const routeCoordinates = useMemo<LatLngExpression[]>(() => {
     // Get all passage records for this vehicle
     const vehicleIdNum = parseInt(vehicleId, 10);
+    
+    // Validate vehicle ID
+    if (isNaN(vehicleIdNum)) {
+      return [];
+    }
+    
     const passageRecords: RegistroPassagem[] = passageRecordDB.getVehicleHistory(vehicleIdNum);
 
     if (passageRecords.length === 0) {

@@ -177,15 +177,20 @@
 /* Route legend styles */
 .route-legend-line {
   width: 32px;
-  height: 4px;
+  height: 3px;
   display: inline-block;
   border-radius: 2px;
 }
 
 .route-legend-planned {
-  background-color: #2563eb;
-  border: 2px dashed rgba(37, 99, 235, 0.7);
-  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    #2563eb 0px,
+    #2563eb 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  height: 3px;
 }
 
 .route-legend-effective {

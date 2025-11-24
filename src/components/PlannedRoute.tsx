@@ -37,8 +37,6 @@ export const PlannedRoute: React.FC<PlannedRouteProps> = ({ mdfe }) => {
       const coords = findCityCoordinates(city);
       if (coords) {
         coordinates.push(coords);
-      } else {
-        console.warn(`Could not find coordinates for city: ${city}`);
       }
     }
 
