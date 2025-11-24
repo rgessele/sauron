@@ -44,6 +44,7 @@
   gap: 2rem;
   font-size: 0.95rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .stat-item {
@@ -61,6 +62,38 @@
 .stat-item strong {
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+.refresh-btn,
+.polling-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.refresh-btn:hover,
+.polling-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.polling-btn.active {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: rgba(76, 175, 80, 0.6);
+}
+
+.polling-btn.active:hover {
+  background: rgba(76, 175, 80, 0.4);
 }
 
 .leaflet-map {

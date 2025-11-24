@@ -13,9 +13,19 @@ import './VehicleMap.css';
 
 interface VehicleMapProps {
   vehicles: Vehicle[];
+  lastUpdateTime?: Date;
+  isPolling?: boolean;
+  onTogglePolling?: () => void;
+  onRefresh?: () => void;
 }
 
-export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
+export const VehicleMap: React.FC<VehicleMapProps> = ({ 
+  vehicles,
+  lastUpdateTime,
+  isPolling = false,
+  onTogglePolling,
+  onRefresh
+}) => {
   const [selectedNCMs, setSelectedNCMs] = useState<string[]>([]);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [isLegendVisible, setIsLegendVisible] = useState<boolean>(true);
@@ -29,9 +39,9 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
     [vehicles, selectedNCMs]
   );
 
-  // Center map on Curitiba, Paraná
+  // Center map on Curitiba, Paraná with wider view to show all state
   const center: [number, number] = [-25.4284, -49.2733];
-  const zoom = 11;
+  const zoom = 7;
 
   const handleVehicleClick = (vehicle: Vehicle) => {
     setSelectedVehicle(vehicle);
@@ -75,6 +85,29 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({ vehicles }) => {
             <span className="stat-item filter-active">
               NCMs selecionados: <strong>{selectedNCMs.length}</strong>
             </span>
+          )}
+          {lastUpdateTime && (
+            <span className="stat-item">
+              Última atualização: <strong>{lastUpdateTime.toLocaleTimeString('pt-BR')}</strong>
+            </span>
+          )}
+          {onRefresh && (
+            <button 
+              className="refresh-btn"
+              onClick={onRefresh}
+              title="Atualizar agora"
+            >
+              🔄 Atualizar
+            </button>
+          )}
+          {onTogglePolling && (
+            <button 
+              className={`polling-btn ${isPolling ? 'active' : ''}`}
+              onClick={onTogglePolling}
+              title={isPolling ? 'Pausar atualizações automáticas' : 'Retomar atualizações automáticas'}
+            >
+              {isPolling ? '⏸️ Pausar' : '▶️ Retomar'}
+            </button>
           )}
         </div>
       </div>
