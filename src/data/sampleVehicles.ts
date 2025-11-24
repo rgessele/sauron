@@ -236,6 +236,7 @@ export const sampleVehicles: Vehicle[] = [
       { code: 'DF02B', description: 'DOCUMENTO FISCAL EM PAPEL ESCRITURADO (ENTRADA) (C100,D100) (PARANÁ)' }
     ],
     lastUpdate: new Date()
+    // This vehicle has no MDFe, simulating a local transport without manifest
   },
   {
     id: '7',
