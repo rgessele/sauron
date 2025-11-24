@@ -64,7 +64,7 @@ export function useVehiclePositionUpdates(pollingInterval: number = 30000) {
   // Set up polling interval
   useEffect(() => {
     if (isPolling) {
-      intervalRef.current = window.setInterval(() => {
+      intervalRef.current = setInterval(() => {
         updateVehiclePositions();
       }, pollingInterval);
 

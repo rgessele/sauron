@@ -3,13 +3,22 @@ import type { Vehicle } from '../types/vehicle';
 import { MDFeModalType } from '../types/vehicle';
 import { paranaHighwayRoutes, getAllRoutePoints } from './paranaHighwayRoutes';
 
+// Constants for data generation
+const PLATE_NUMBER_MULTIPLIER = 123; // Used to generate pseudo-random plate numbers
+const PLATE_NUMBER_MAX = 9000; // Maximum number range for plates (1000-9999)
+const VEHICLE_OFFSET_MULTIPLIER = 7; // Spread vehicles along routes
+const BASE_TIME_OFFSET_HOURS = 2; // Start simulation 2 hours ago
+const MIN_RECORDS_PER_VEHICLE = 15; // Maximum records to generate per vehicle
+const TIME_INCREMENT_BASE = 5; // Base minutes between records
+const TIME_INCREMENT_VARIANCE = 5; // Additional variable minutes (based on vehicle ID)
+
 // Generate vehicle plate (Brazilian format: ABC-1234)
 function generatePlate(id: number): string {
   const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const letter1 = letters[Math.floor(id / 676) % 26];
   const letter2 = letters[Math.floor(id / 26) % 26];
   const letter3 = letters[id % 26];
-  const numbers = String(1000 + (id * 123) % 9000).padStart(4, '0');
+  const numbers = String(1000 + (id * PLATE_NUMBER_MULTIPLIER) % PLATE_NUMBER_MAX).padStart(4, '0');
   return `${letter1}${letter2}${letter3}-${numbers}`;
 }
 
@@ -19,7 +28,7 @@ export function generatePassageRecords(): RegistroPassagem[] {
   let recordId = 1;
   
   const baseTime = new Date();
-  baseTime.setHours(baseTime.getHours() - 2); // Start 2 hours ago
+  baseTime.setHours(baseTime.getHours() - BASE_TIME_OFFSET_HOURS);
   
   // Generate data for 50 vehicles
   for (let vehicleId = 1; vehicleId <= 50; vehicleId++) {
@@ -31,16 +40,16 @@ export function generatePassageRecords(): RegistroPassagem[] {
     const routePoints = getAllRoutePoints(baseRoute, 3);
     
     // Each vehicle starts at a different position along its route
-    const startPosition = (vehicleId * 7) % routePoints.length;
-    const pointsToGenerate = Math.min(15, routePoints.length); // Generate up to 15 records per vehicle
+    const startPosition = (vehicleId * VEHICLE_OFFSET_MULTIPLIER) % routePoints.length;
+    const pointsToGenerate = Math.min(MIN_RECORDS_PER_VEHICLE, routePoints.length);
     
     // Generate passage records with timestamps
     for (let i = 0; i < pointsToGenerate; i++) {
       const pointIndex = (startPosition + i) % routePoints.length;
       const point = routePoints[pointIndex];
       
-      // Each record is 5-10 minutes apart
-      const minutesOffset = (vehicleId - 1) * 2 + i * (5 + (vehicleId % 5));
+      // Each record is 5-10 minutes apart (varies by vehicle)
+      const minutesOffset = (vehicleId - 1) * 2 + i * (TIME_INCREMENT_BASE + (vehicleId % TIME_INCREMENT_VARIANCE));
       const timestamp = new Date(baseTime.getTime() + minutesOffset * 60000);
       
       records.push({
@@ -62,7 +71,7 @@ export function generatePassageRecords(): RegistroPassagem[] {
 // In-memory database simulation
 class PassageRecordDatabase {
   private records: RegistroPassagem[] = [];
-  private lastQueryTime: Date = new Date(0);
+  private lastQueryTime: Date = new Date(0); // Epoch time (1970-01-01) - start from beginning
   
   constructor() {
     // Initialize with generated records
