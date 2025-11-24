@@ -4,6 +4,8 @@ import { VehicleMarker } from './VehicleMarker';
 import { FixedPointMarker } from './FixedPointMarker';
 import { NCMFilter } from './NCMFilter';
 import { VehicleDetailsPanel } from './VehicleDetailsPanel';
+import { PlannedRoute } from './PlannedRoute';
+import { EffectiveRoute } from './EffectiveRoute';
 import type { Vehicle } from '../types/vehicle';
 import { extractUniqueNCMs, filterVehiclesByNCM } from '../utils/ncmUtils';
 import { prfPosts } from '../data/prfPosts';
@@ -121,6 +123,17 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/* Render routes for selected vehicle */}
+        {selectedVehicle && (
+          <>
+            {/* Effective route (red) - actual path based on passage records */}
+            <EffectiveRoute vehicleId={selectedVehicle.id} />
+            {/* Planned route (blue) - based on MDFe route information */}
+            {selectedVehicle.mdfe && (
+              <PlannedRoute mdfe={selectedVehicle.mdfe} />
+            )}
+          </>
+        )}
         {/* Render fixed points (PRF posts and Receita offices) */}
         {prfPosts.map((point) => (
           <FixedPointMarker key={point.id} point={point} />
@@ -181,6 +194,17 @@ export const VehicleMap: React.FC<VehicleMapProps> = ({
               <div className="legend-item">
                 <span className="legend-icon">🏛️</span>
                 <span>Receita Estadual</span>
+              </div>
+            </div>
+            <h3 style={{ marginTop: '1rem' }}>Rotas</h3>
+            <div className="legend-items">
+              <div className="legend-item">
+                <span className="route-legend-line route-legend-planned"></span>
+                <span>Rota Planejada (MDFe)</span>
+              </div>
+              <div className="legend-item">
+                <span className="route-legend-line route-legend-effective"></span>
+                <span>Rota Efetiva</span>
               </div>
             </div>
           </>
