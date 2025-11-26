@@ -9,30 +9,30 @@
 }
 
 .malha-filter-toggle {
-  background: white;
-  border: 2px solid #e67e22;
-  border-radius: 8px;
+  background: var(--color-btn-bg);
+  border: 1px solid var(--color-warning-fg);
+  border-radius: 6px;
   padding: 0.7rem 1.2rem;
   font-size: 0.95rem;
-  font-weight: 600;
-  color: #e67e22;
+  font-weight: 500;
+  color: var(--color-warning-fg);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(230, 126, 34, 0.2);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--color-shadow-small);
 }
 
 .malha-filter-toggle:hover {
-  background: #e67e22;
-  color: white;
-  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+  background: var(--color-warning-emphasis);
+  color: var(--color-text-primary);
+  border-color: var(--color-warning-emphasis);
 }
 
 .malha-badge {
-  background: #c0392b;
-  color: white;
+  background: var(--color-danger-emphasis);
+  color: var(--color-text-primary);
   border-radius: 12px;
   padding: 0.15rem 0.5rem;
   font-size: 0.8rem;
@@ -53,57 +53,65 @@
   top: 100%;
   right: 0;
   margin-top: 0.5rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  background: var(--color-bg-default);
+  border-radius: 6px;
+  box-shadow: var(--color-shadow-large);
   min-width: 450px;
   max-width: 550px;
   z-index: 1001;
+  border: 1px solid var(--color-border-default);
 }
 
 .malha-search-box {
   padding: 1rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .malha-search-input {
   width: 100%;
   padding: 0.7rem;
-  border: 2px solid #e0e0e0;
+  border: 1px solid var(--color-border-default);
   border-radius: 6px;
   font-size: 0.9rem;
   transition: border-color 0.2s ease;
+  background: var(--color-bg-canvas);
+  color: var(--color-text-primary);
 }
 
 .malha-search-input:focus {
   outline: none;
-  border-color: #e67e22;
+  border-color: var(--color-warning-fg);
+  box-shadow: 0 0 0 3px var(--color-warning-muted);
+}
+
+.malha-search-input::placeholder {
+  color: var(--color-text-muted);
 }
 
 .malha-filter-actions {
   display: flex;
   gap: 0.5rem;
   padding: 0.8rem 1rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .malha-action-btn {
   flex: 1;
   padding: 0.5rem 0.8rem;
-  background: #f5f5f5;
-  border: 1px solid #d0d0d0;
+  background: var(--color-btn-bg);
+  border: 1px solid var(--color-btn-border);
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #555;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .malha-action-btn:hover {
-  background: #e67e22;
-  color: white;
-  border-color: #e67e22;
+  background: var(--color-warning-emphasis);
+  color: var(--color-text-primary);
+  border-color: var(--color-warning-emphasis);
 }
 
 .malha-list {
@@ -117,17 +125,17 @@
 }
 
 .malha-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-bg-subtle);
   border-radius: 4px;
 }
 
 .malha-list::-webkit-scrollbar-thumb {
-  background: #c0c0c0;
+  background: var(--color-bg-emphasis);
   border-radius: 4px;
 }
 
 .malha-list::-webkit-scrollbar-thumb:hover {
-  background: #a0a0a0;
+  background: var(--color-text-muted);
 }
 
 .malha-item {
@@ -141,14 +149,14 @@
 }
 
 .malha-item:hover {
-  background-color: #fff8f0;
+  background-color: var(--color-bg-subtle);
 }
 
 .malha-item input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
-  accent-color: #e67e22;
+  accent-color: var(--color-warning-fg);
   margin-top: 2px;
 }
 
@@ -161,20 +169,20 @@
 
 .malha-code {
   font-weight: 600;
-  color: #c0392b;
+  color: var(--color-danger-fg);
   font-size: 0.9rem;
 }
 
 .malha-description {
   font-size: 0.8rem;
-  color: #666;
+  color: var(--color-text-secondary);
   line-height: 1.3;
 }
 
 .malha-empty {
   padding: 2rem;
   text-align: center;
-  color: #999;
+  color: var(--color-text-tertiary);
   font-style: italic;
 }
 
