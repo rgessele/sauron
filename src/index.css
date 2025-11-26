@@ -1,3 +1,72 @@
+/* GitHub-style Dark Mode Theme Variables */
+:root {
+  /* Primary colors */
+  --color-bg-canvas: #0d1117;
+  --color-bg-default: #161b22;
+  --color-bg-subtle: #21262d;
+  --color-bg-muted: #30363d;
+  --color-bg-emphasis: #6e7681;
+  
+  /* Border colors */
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-border-subtle: #161b22;
+  
+  /* Text colors */
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #8d96a0;
+  --color-text-tertiary: #6e7681;
+  --color-text-muted: #484f58;
+  
+  /* Accent colors */
+  --color-accent-fg: #58a6ff;
+  --color-accent-emphasis: #1f6feb;
+  --color-accent-muted: rgba(56, 139, 253, 0.4);
+  --color-accent-subtle: rgba(56, 139, 253, 0.15);
+  
+  /* Success colors */
+  --color-success-fg: #3fb950;
+  --color-success-emphasis: #238636;
+  --color-success-muted: rgba(46, 160, 67, 0.4);
+  
+  /* Warning colors */
+  --color-warning-fg: #d29922;
+  --color-warning-emphasis: #9e6a03;
+  --color-warning-muted: rgba(187, 128, 9, 0.4);
+  
+  /* Danger colors */
+  --color-danger-fg: #f85149;
+  --color-danger-emphasis: #da3633;
+  --color-danger-muted: rgba(248, 81, 73, 0.4);
+  
+  /* Button colors */
+  --color-btn-bg: #21262d;
+  --color-btn-border: rgba(240, 246, 252, 0.1);
+  --color-btn-hover-bg: #30363d;
+  --color-btn-hover-border: #8b949e;
+  
+  --color-btn-primary-bg: #238636;
+  --color-btn-primary-hover-bg: #2ea043;
+  --color-btn-primary-border: rgba(240, 246, 252, 0.1);
+  --color-btn-primary-text: #ffffff;
+  
+  --color-btn-danger-bg: #21262d;
+  --color-btn-danger-hover-bg: #da3633;
+  --color-btn-danger-border: rgba(240, 246, 252, 0.1);
+  
+  /* Header colors */
+  --color-header-bg: #161b22;
+  --color-header-text: #e6edf3;
+  
+  /* Shadow */
+  --color-shadow-large: 0 8px 24px rgba(1, 4, 9, 0.75);
+  --color-shadow-medium: 0 3px 6px rgba(1, 4, 9, 0.5);
+  --color-shadow-small: 0 1px 3px rgba(1, 4, 9, 0.12);
+  
+  /* Overlay */
+  --color-overlay-bg: rgba(22, 27, 34, 0.85);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +78,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-canvas);
+  color: var(--color-text-primary);
 }
 
 html, body, #root {
